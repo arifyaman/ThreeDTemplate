@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ThreeD_Template</string>
+    <string name="bottom_banner_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="interstitial_id">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="rewarded_id">ca-app-pub-3940256099942544/5224354917</string>
+    <string name="google_games_app_id"></string>
+
+</resources>
