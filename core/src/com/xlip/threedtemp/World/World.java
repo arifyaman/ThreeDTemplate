@@ -21,7 +21,7 @@ import com.xlip.threedtemp.Assets;
 import com.xlip.threedtemp.Input.MyInputProcessor;
 import com.xlip.threedtemp.Menu.Menu;
 import com.xlip.threedtemp.Objects.GameObject;
-import com.xlip.threedtemp.Objects.partials.bubbles.Bubbles;
+import com.xlip.threedtemp.Objects.Partials.bubbles.Bubbles;
 import com.xlip.threedtemp.Utils.Lerp;
 
 /**
@@ -139,7 +139,8 @@ public class World implements MyInputProcessor.MyInputCallback {
         by.addToEnd(diffy);
 
 
-        //objects.addAll(new Bubbles(10,box.getPosition(),6,Assets.i3,3f));
+        objects.addAll(new Bubbles(10,box.getPosition(),6,Assets.i3,3f));
+
         down = cxy;
         return false;
     }

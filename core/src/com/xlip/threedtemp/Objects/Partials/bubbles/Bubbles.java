@@ -1,10 +1,12 @@
-package com.xlip.threedtemp.Objects.partials.bubbles;
+package com.xlip.threedtemp.Objects.Partials.bubbles;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
-import com.xlip.threedtemp.Objects.partials.Partial;
+import com.xlip.threedtemp.Objects.Partials.Partial;
+
+import java.util.Random;
 
 
 /**
@@ -12,9 +14,10 @@ import com.xlip.threedtemp.Objects.partials.Partial;
  */
 
 public class Bubbles extends Array<Partial> {
-
+    Random random;
 
     public Bubbles(int size, Vector3 pos, float lerpStrenght, TextureRegion textureRegion, float randomizeSpread) {
+        random = new Random();
         for (int i = 0; i < size; i++) {
             Partial next = ((Partial) new Partial(pos, lerpStrenght) {
                 float dissappearRandomize;
@@ -35,7 +38,7 @@ public class Bubbles extends Array<Partial> {
                 public void onLerpFinished() {
                     dispose();
                 }
-            }.setColor(Color.valueOf("#D8728A")).setTexture(textureRegion));
+            }.setColor(new Color(random.nextFloat(),random.nextFloat(),random.nextFloat(),1)).setTexture(textureRegion));
 
             Vector3 spread = new Vector3( pos.x + next.random.nextFloat()*randomizeSpread * (next.random.nextBoolean() ? 1 : -1) , pos.y+next.random.nextFloat()*randomizeSpread*(next.random.nextBoolean() ? 1 : -1), pos.z + next.random.nextFloat()*randomizeSpread* (next.random.nextBoolean() ? 1 : -1));
 

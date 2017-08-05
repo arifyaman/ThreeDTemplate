@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Timer;
 import com.xlip.threedtemp.Interfaces.AndroidUnit;
 import com.xlip.threedtemp.Menu.Effects.Defaults.DefaultMenuFinisher;
 import com.xlip.threedtemp.Menu.Effects.Defaults.DefaultMenuOpener;
@@ -13,6 +14,7 @@ import com.xlip.threedtemp.Menu.Menu;
 import com.xlip.threedtemp.Menu.Object.Font.NumberRenderer;
 import com.xlip.threedtemp.Menu.Object.MenuObject;
 import com.xlip.threedtemp.Objects.Model.Model;
+import com.xlip.threedtemp.Screen.SplashScreen;
 import com.xlip.threedtemp.Settings.Settings;
 import com.xlip.threedtemp.Utils.Lerp;
 import com.xlip.threedtemp.World.World;
@@ -21,7 +23,7 @@ import com.xlip.threedtemp.Screen.Screen;
 import java.io.File;
 
 
-public class ThreeDTemp extends ApplicationAdapter {
+public class ThreeDTemp extends ApplicationAdapter implements SplashScreen.MainCallBacks {
 	private AndroidUnit androidUnit;
 
 
@@ -29,6 +31,7 @@ public class ThreeDTemp extends ApplicationAdapter {
 	private ShaderProgram shaderProgram;
 
 	int number;
+	NumberRenderer numberRenderer;
 
 
 	public ThreeDTemp(AndroidUnit androidUnit) {
@@ -92,8 +95,16 @@ public class ThreeDTemp extends ApplicationAdapter {
 
 	@Override
 	public void create () {
-		Model.init();
 		Assets.init();
+		screen = new SplashScreen(2f,this);
+
+	}
+
+
+	@Override
+	public void onSplashScreenFinished() {
+		Model.init();
+
 
 		shaderProgram = new ShaderProgram(Assets.defaultShaderVertex,Assets.blurSahderFragment);
 		if (shaderProgram.isCompiled() == false) throw new IllegalArgumentException("Error compiling shader: " + shaderProgram.getLog());
@@ -103,9 +114,11 @@ public class ThreeDTemp extends ApplicationAdapter {
 		androidUnit.show_bottom_banner();
 		number = 0;
 
+
 	}
 
-	NumberRenderer numberRenderer;
+
+
 
 	private  Menu setMenu() {
 		Menu test = new Menu() {
@@ -141,35 +154,43 @@ public class ThreeDTemp extends ApplicationAdapter {
 	@Override
 	public void render () {
 		final float delta = Math.min(1f / 30f, Gdx.graphics.getDeltaTime());
-		screen.render(delta);
 
-		numberRenderer.setNumber(number);
-
-		if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
+		if(screen != null)
+			screen.render(delta);
 
 
-			if(number >= 10 && number<100)
-				number += 10;
-			else if(number >= 100 && number<1000)
-				number += 100;
-			else if(number >= 1000 && number<10000)
-				number += 1000;
-			else if(number >= 10000 && number<100000)
-				number += 10000;
-			else if(number >= 100000 && number<1000000)
-				number += 100000;
-			else if(number >= 1000000 && number<10000000)
-				number += 1000000;
-			else if(number >= 10000000 && number<100000000)
-				number += 10000000;
-			else number += 1;
+		try {
+			numberRenderer.setNumber(number);
+
+			if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
 
 
+                if(number >= 10 && number<100)
+                    number += 10;
+                else if(number >= 100 && number<1000)
+                    number += 100;
+                else if(number >= 1000 && number<10000)
+                    number += 1000;
+                else if(number >= 10000 && number<100000)
+                    number += 10000;
+                else if(number >= 100000 && number<1000000)
+                    number += 100000;
+                else if(number >= 1000000 && number<10000000)
+                    number += 1000000;
+                else if(number >= 10000000 && number<100000000)
+                    number += 10000000;
+                else number += 1;
+
+
+            }
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 
 	}
-	
+
+
 	@Override
 	public void dispose () {
 

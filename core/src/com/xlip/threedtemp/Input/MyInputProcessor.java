@@ -39,24 +39,30 @@ public class MyInputProcessor implements InputProcessor {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         Vector2 converted = converted(screenX,screenY);
-        menu.touchDown(converted);
-        myInputCallback.touchDown(converted);
+        if(menu != null)
+            menu.touchDown(converted);
+        if(myInputCallback != null)
+            myInputCallback.touchDown(converted);
         return false;
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         Vector2 converted = converted(screenX,screenY);
-        menu.touchUp(converted);
-        myInputCallback.touchUp(converted);
+        if(menu != null)
+            menu.touchUp(converted);
+        if(myInputCallback != null)
+            myInputCallback.touchUp(converted);
         return false;
     }
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
         Vector2 converted = converted(screenX,screenY);
-        menu.touchDragged(converted);
-        myInputCallback.touchDragged(converted);
+        if(menu != null)
+            menu.touchDragged(converted);
+        if(myInputCallback != null)
+            myInputCallback.touchDragged(converted);
         return false;
     }
 

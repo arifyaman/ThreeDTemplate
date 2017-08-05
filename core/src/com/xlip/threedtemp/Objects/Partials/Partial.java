@@ -1,4 +1,4 @@
-package com.xlip.threedtemp.Objects.partials;
+package com.xlip.threedtemp.Objects.Partials;
 
 
 import com.badlogic.gdx.math.Vector3;

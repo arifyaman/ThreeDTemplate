@@ -32,16 +32,13 @@ public class Screen implements Menu.ScreenCallbacks,World.ScreenCallbacks {
     public Screen(World world, Menu menu) {
 
         this.world = world;
-        this.menu = menu;
-        menu.setScreenCallbacks(this);
         orthographicCamera=new OrthographicCamera(Settings.orto_width,Settings.orto_height);
-
-        menu.setView(orthographicCamera.combined);
-
-
         orthographicCamera.update();
         spriteBatch = new SpriteBatch();
         spriteBatch.enableBlending();
+
+        if(menu != null)
+            setMenu(menu);
 
         Gdx.input.setInputProcessor(new MyInputProcessor(this).setMyInputCallback(world));
         //Gdx.input.setInputProcessor(new CameraInputController(world.camera));
@@ -62,7 +59,10 @@ public class Screen implements Menu.ScreenCallbacks,World.ScreenCallbacks {
         gl.glClearColor(1f, 1f, 1f, 1.f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
-        world.render(delta);
+        if(world != null){
+            world.render(delta);
+        }
+
         if(menu != null) {
             menu.draw(delta);
         }

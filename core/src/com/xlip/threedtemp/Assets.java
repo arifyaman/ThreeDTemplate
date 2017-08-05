@@ -18,6 +18,7 @@ public class Assets {
     public static TextureRegion  i1;
     public static TextureRegion  i2;
     public static TextureRegion  i3;
+    public static Texture splash;
 
 
 
@@ -28,7 +29,8 @@ public class Assets {
 
         atlas = new Texture("tex.png");
         atlas.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-
+        splash = new Texture("splash.png");
+        splash.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
         i1 = new TextureRegion(atlas,0,0,200,200);
         i2 = new TextureRegion(atlas,200,0,200,200);
