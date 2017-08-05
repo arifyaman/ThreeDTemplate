@@ -53,10 +53,9 @@ public class AdInitializer implements AndroidUnit {
 
     private void setUpAds(){
         bottom_banner = new AdView(context);
-        bottom_banner.setVisibility(View.VISIBLE);
         bottom_banner.setBackgroundColor(Color.TRANSPARENT);
         bottom_banner.setAdUnitId(bottom_banner_id);
-        bottom_banner.setAdSize(AdSize.SMART_BANNER);
+        bottom_banner.setAdSize(AdSize.BANNER);
         bottom_banner.setVisibility(View.INVISIBLE);
     }
 
@@ -65,13 +64,10 @@ public class AdInitializer implements AndroidUnit {
 
     @Override
     public void show_bottom_banner() {
-
         bottom_banner.setVisibility(View.VISIBLE);
         AdRequest.Builder builder = new AdRequest.Builder();
         AdRequest ad = builder.build();
         bottom_banner.loadAd(ad);
-
-
     }
 
     @Override

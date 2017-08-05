@@ -115,21 +115,21 @@ public class ThreeDTemp extends ApplicationAdapter {
 			}
 		};
 
-		MenuObject menuObject = new MenuObject(Assets.i1,new Vector2(-400,-400),new Vector2(150,150)).setFinisher();
+		MenuObject menuObject = new MenuObject(Assets.i1,new Vector2(-400,-400),new Vector2(222,222)).setFinisher();
 		menuObject.setClickedTexture(Assets.i2);
 
-		MenuObject menuObject2 = new MenuObject(Assets.i1,new Vector2(-200,-400),new Vector2(150,150)).setFinisher();
+		MenuObject menuObject2 = new MenuObject(Assets.i1,new Vector2(-100,-400),new Vector2(222,222)).setFinisher();
 		menuObject2.setClickedTexture(Assets.i2);
 
-		numberRenderer = new NumberRenderer(Assets.atlas,400,0,70,100,new Vector2(0,Settings.appheight-300),new Vector2(70*1.2f,100*1.2f)).setAling(NumberRenderer.ALING_CENTER);
+		numberRenderer = new NumberRenderer(Assets.atlas,400,0,70,100,new Vector2(0,Settings.appheight-150),new Vector2(70*1.2f,100*1.2f)).setAling(NumberRenderer.ALING_CENTER);
 
 		numberRenderer.setColor(Color.BLACK);
 
 
 
 
-		test.addMenuObject(menuObject);
-		test.addMenuObject(menuObject2);
+		//test.addMenuObject(menuObject);
+		//test.addMenuObject(menuObject2);
 		test.addMenuObject(numberRenderer);
 		test.setMenuOpener(new DefaultMenuOpener(9));
 		test.setMenuFinisher(new DefaultMenuFinisher(22));
@@ -145,7 +145,7 @@ public class ThreeDTemp extends ApplicationAdapter {
 
 		numberRenderer.setNumber(number);
 
-		if(Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)){
+		if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
 
 
 			if(number >= 10 && number<100)
@@ -154,6 +154,14 @@ public class ThreeDTemp extends ApplicationAdapter {
 				number += 100;
 			else if(number >= 1000 && number<10000)
 				number += 1000;
+			else if(number >= 10000 && number<100000)
+				number += 10000;
+			else if(number >= 100000 && number<1000000)
+				number += 100000;
+			else if(number >= 1000000 && number<10000000)
+				number += 1000000;
+			else if(number >= 10000000 && number<100000000)
+				number += 10000000;
 			else number += 1;
 
 

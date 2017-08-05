@@ -57,7 +57,7 @@ public class World implements MyInputProcessor.MyInputCallback {
 
 
 
-        box = new GameObject("box").setColor(Color.valueOf("#53ABAD"));
+        box = new GameObject("box").setColor(Color.valueOf("#63CE7A"));
 
         objects.add(box);
 
