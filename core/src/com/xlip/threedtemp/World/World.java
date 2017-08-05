@@ -67,30 +67,6 @@ public class World implements MyInputProcessor.MyInputCallback {
 
         objects.addAll(bubbles);
 
-       /* int size =10;
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                for (int k = 0; k < size; k++) {
-                    objects.add(new GameObject("box"){
-                        Lerp s;
-
-                        @Override
-                        public void onCreate() {
-                            s = new Lerp(1,3,1);
-                            super.onCreate();
-                        }
-
-                        @Override
-                        public void update(float delta) {
-                            transform.setToScaling(s.getValue(delta),s.getValue(delta),s.getValue(delta));
-                            setPosition(this.getPosition());
-                            super.update(delta);
-
-                        }
-                    }.setPosition(1.5f*i,1.5f*j,1.5f*k));
-                }
-            }
-        }*/
 
         bx = new Lerp(0,1,11);
         by = new Lerp(0,1,11);
@@ -107,7 +83,18 @@ public class World implements MyInputProcessor.MyInputCallback {
             g.update(delta);
         }
 
-        box.transform.setToScaling(bx.getValue(delta),by.getValue(delta),bx.getValue(delta));
+        float byv = by.getValue(delta);
+        if(byv < 0){
+            byv = 0.01f;
+            by.go(0.01f);
+        }
+        float bxv = bx.getValue(delta);
+        if(bxv < 0){
+            bxv = 0.01f;
+            bx.go(0.01f);
+        }
+
+            box.transform.setToScaling(byv,1,bxv);
 
         //box.setPosition(by.getValue(delta),box.getPosition().y, bx.getValue(delta));
 
@@ -141,9 +128,10 @@ public class World implements MyInputProcessor.MyInputCallback {
 
     @Override
     public boolean touchDragged(Vector2 cxy) {
-        float deg = 100;
+        float deg = 20;
         float diffx = (cxy.x - down.x)/deg;
         float diffy = (cxy.y - down.y)/deg;
+
 
         //box.setPosition((cxy.y - down.y)/deg,box.getPosition().y,(cxy.x - down.x)/deg);
 

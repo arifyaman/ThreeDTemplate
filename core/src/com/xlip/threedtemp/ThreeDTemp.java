@@ -13,20 +13,81 @@ import com.xlip.threedtemp.Menu.Menu;
 import com.xlip.threedtemp.Menu.Object.Font.NumberRenderer;
 import com.xlip.threedtemp.Menu.Object.MenuObject;
 import com.xlip.threedtemp.Objects.Model.Model;
+import com.xlip.threedtemp.Settings.Settings;
 import com.xlip.threedtemp.Utils.Lerp;
 import com.xlip.threedtemp.World.World;
 import com.xlip.threedtemp.Screen.Screen;
 
+import java.io.File;
+
 
 public class ThreeDTemp extends ApplicationAdapter {
+	private AndroidUnit androidUnit;
+
+
 	private Screen screen;
 	private ShaderProgram shaderProgram;
-	private AndroidUnit androidUnit;
-	Lerp numberLerp;
+
+	int number;
 
 
 	public ThreeDTemp(AndroidUnit androidUnit) {
 		this.androidUnit = androidUnit;
+	}
+
+	//for desktop mode
+	public ThreeDTemp() {
+		this.androidUnit = new AndroidUnit() {
+			@Override
+			public void show_bottom_banner() {
+
+			}
+
+			@Override
+			public void hide_bottom_banner() {
+
+			}
+
+			@Override
+			public void show_top_banner() {
+
+			}
+
+			@Override
+			public void hide_top_banner() {
+
+			}
+
+			@Override
+			public void show_video() {
+
+			}
+
+			@Override
+			public void load_video_ad() {
+
+			}
+
+			@Override
+			public void share_score(File f) {
+
+			}
+
+			@Override
+			public void google_login() {
+
+			}
+
+			@Override
+			public void show_score_table() {
+
+			}
+
+			@Override
+			public void sent_score(int score) {
+
+			}
+		};
 	}
 
 	@Override
@@ -40,6 +101,7 @@ public class ThreeDTemp extends ApplicationAdapter {
 		screen = new Screen(new World(),setMenu());
 
 		androidUnit.show_bottom_banner();
+		number = 0;
 
 	}
 
@@ -59,11 +121,11 @@ public class ThreeDTemp extends ApplicationAdapter {
 		MenuObject menuObject2 = new MenuObject(Assets.i1,new Vector2(-200,-400),new Vector2(150,150)).setFinisher();
 		menuObject2.setClickedTexture(Assets.i2);
 
-		numberRenderer = new NumberRenderer(Assets.atlas,400,0,70,100,new Vector2(0,0),new Vector2(70*1.2f,100*1.2f));
+		numberRenderer = new NumberRenderer(Assets.atlas,400,0,70,100,new Vector2(0,Settings.appheight-300),new Vector2(70*1.2f,100*1.2f)).setAling(NumberRenderer.ALING_CENTER);
 
 		numberRenderer.setColor(Color.BLACK);
 
-		numberLerp = new Lerp(0,1020,2f);
+
 
 
 		test.addMenuObject(menuObject);
@@ -81,10 +143,19 @@ public class ThreeDTemp extends ApplicationAdapter {
 		final float delta = Math.min(1f / 30f, Gdx.graphics.getDeltaTime());
 		screen.render(delta);
 
-		numberRenderer.setNumber(Math.round(numberLerp.getValue(delta)));
+		numberRenderer.setNumber(number);
 
-		if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
-			numberLerp.go(numberLerp.getValue(0)+100);
+		if(Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)){
+
+
+			if(number >= 10 && number<100)
+				number += 10;
+			else if(number >= 100 && number<1000)
+				number += 100;
+			else if(number >= 1000 && number<10000)
+				number += 1000;
+			else number += 1;
+
 
 		}
 

@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.sun.org.apache.xpath.internal.operations.Number;
 import com.xlip.threedtemp.Menu.Object.MenuObject;
 
 
@@ -13,20 +14,28 @@ import com.xlip.threedtemp.Menu.Object.MenuObject;
  * Created by Arif on 29.07.2017.
  */
 
-public class NumberRenderer extends MenuObject {
+public class NumberRenderer extends FontObject {
     private Array<FontObject> objects;
 
     private boolean toRight;
     private int number;
     private String tempNumber;
     private Color color;
-    private Array<FontObject> renderingObjects;
 
 
     private Texture atlas;
     private int x,y,tw,th;
-    private Vector2 position;
+
     private Vector2 wh;
+    private boolean center;
+    private boolean left;
+    private boolean right;
+    private int ALING;
+
+    public final static int ALING_CENTER = 1;
+    public final static int ALING_LEFT = 2;
+    public final static int ALING_RIGHT = 3;
+
 
 
 
@@ -34,14 +43,12 @@ public class NumberRenderer extends MenuObject {
         super(null,position,wh);
         this.atlas = texture;
         this.wh = wh;
-        this.position = position;
         this.x = x;
         this.y = y;
         this.tw = tw;
         this.th = th;
 
         objects = new Array<FontObject>();
-        renderingObjects = new Array<FontObject>();
 
         this.toRight = true;
         this.number = 0;
@@ -57,12 +64,29 @@ public class NumberRenderer extends MenuObject {
             batch.setColor(color);
 
         for (int i = 0; i < str.length(); i++) {
+
             int a = Character.getNumericValue(str.charAt(i));
-            FontObject obj =  new FontObject(new TextureRegion(atlas,x+tw*a,y,tw,th),new Vector2(position).add(wh.x*i,50),wh);
-            obj.goToPosition(position.x+wh.x*i,position.y);
+            float differenceForAlign = 0;
+
+            if(ALING == ALING_RIGHT){
+                differenceForAlign = wh.x*str.length();
+            }else if(ALING == ALING_CENTER){
+                differenceForAlign = (wh.x*str.length())/2;
+            }
+
+            FontObject obj =  new FontObject(new TextureRegion(atlas,x+tw*a,y,tw,th),new Vector2(getPosition()).add((wh.x*i)-differenceForAlign,50),wh);
+
+            Vector2 gotoPos = new Vector2((getPosition().x + wh.x * i)-differenceForAlign, getPosition().y);
+
+
+            obj.goToPosition(gotoPos);
+
             if(objects.size - 1 < i) {
                 objects.add(obj);
             }else if(str.charAt(i) != tempNumber.charAt(i)){
+                objects.removeIndex(i);
+                objects.insert(i,obj);
+            }else if(str.length() > tempNumber.length()){
                 objects.removeIndex(i);
                 objects.insert(i,obj);
             }
@@ -76,6 +100,7 @@ public class NumberRenderer extends MenuObject {
 
         batch.setColor(existing);
         this.tempNumber = str;
+
     }
 
 
@@ -106,5 +131,10 @@ public class NumberRenderer extends MenuObject {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public NumberRenderer setAling(int align){
+        this.ALING = align;
+        return this;
     }
 }

@@ -81,6 +81,10 @@ public class Lerp {
         return this.finished;
     }
 
+    public float getEnd() {
+        return end;
+    }
+
     public void onFinished(){
 
     }
