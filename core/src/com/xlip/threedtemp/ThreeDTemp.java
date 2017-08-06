@@ -96,15 +96,13 @@ public class ThreeDTemp extends ApplicationAdapter implements SplashScreen.MainC
 	@Override
 	public void create () {
 		Assets.init();
-		screen = new SplashScreen(2f,this);
-
+		//screen = new SplashScreen(2f,this);
+		onSplashScreenFinished();
 	}
-
 
 	@Override
 	public void onSplashScreenFinished() {
 		Model.init();
-
 
 		shaderProgram = new ShaderProgram(Assets.defaultShaderVertex,Assets.blurSahderFragment);
 		if (shaderProgram.isCompiled() == false) throw new IllegalArgumentException("Error compiling shader: " + shaderProgram.getLog());

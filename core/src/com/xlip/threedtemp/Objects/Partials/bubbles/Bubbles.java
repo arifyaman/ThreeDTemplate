@@ -14,10 +14,13 @@ import java.util.Random;
  */
 
 public class Bubbles extends Array<Partial> {
-    Random random;
 
-    public Bubbles(int size, Vector3 pos, float lerpStrenght, TextureRegion textureRegion, float randomizeSpread) {
-        random = new Random();
+
+
+
+
+    public Bubbles(int size, Vector3 pos, float lerpStrenght, TextureRegion textureRegion, float randomizeSpread, Color color) {
+
         for (int i = 0; i < size; i++) {
             Partial next = ((Partial) new Partial(pos, lerpStrenght) {
                 float dissappearRandomize;
@@ -38,7 +41,15 @@ public class Bubbles extends Array<Partial> {
                 public void onLerpFinished() {
                     dispose();
                 }
-            }.setColor(new Color(random.nextFloat(),random.nextFloat(),random.nextFloat(),1)).setTexture(textureRegion));
+            }.setTexture(textureRegion));
+
+            if(color == null){
+                Random random = new Random();
+                next.setColor(new Color(random.nextFloat(),random.nextFloat(),random.nextFloat(),1f));
+            } else {
+                next.setColor(color);
+            }
+
 
             Vector3 spread = new Vector3( pos.x + next.random.nextFloat()*randomizeSpread * (next.random.nextBoolean() ? 1 : -1) , pos.y+next.random.nextFloat()*randomizeSpread*(next.random.nextBoolean() ? 1 : -1), pos.z + next.random.nextFloat()*randomizeSpread* (next.random.nextBoolean() ? 1 : -1));
 
@@ -46,6 +57,5 @@ public class Bubbles extends Array<Partial> {
             add(next);
         }
     }
-
 
 }

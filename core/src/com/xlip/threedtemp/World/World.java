@@ -62,7 +62,7 @@ public class World implements MyInputProcessor.MyInputCallback {
         objects.add(box);
 
 
-        bubbles = new Bubbles(10,new Vector3(0,3,0),6,Assets.i3,1.3f);
+        bubbles = new Bubbles(10,new Vector3(0,3,0),6,Assets.i3,1.3f,null);
 
 
         objects.addAll(bubbles);
@@ -75,7 +75,9 @@ public class World implements MyInputProcessor.MyInputCallback {
 
     public void render(float delta) {
         modelBatch.begin(camera);
+
         modelBatch.render(objects,environment);
+
         modelBatch.end();
 
         for (GameObject g :
@@ -83,18 +85,10 @@ public class World implements MyInputProcessor.MyInputCallback {
             g.update(delta);
         }
 
-        float byv = by.getValue(delta);
-        if(byv < 0){
-            byv = 0.01f;
-            by.go(0.01f);
-        }
-        float bxv = bx.getValue(delta);
-        if(bxv < 0){
-            bxv = 0.01f;
-            bx.go(0.01f);
-        }
 
-            box.transform.setToScaling(byv,1,bxv);
+
+        box.transform.setFromEulerAngles(bx.getValue(delta),by.getValue(delta),bx.getValue(delta));
+
 
         //box.setPosition(by.getValue(delta),box.getPosition().y, bx.getValue(delta));
 
@@ -128,18 +122,18 @@ public class World implements MyInputProcessor.MyInputCallback {
 
     @Override
     public boolean touchDragged(Vector2 cxy) {
-        float deg = 20;
+        float deg = 1;
         float diffx = (cxy.x - down.x)/deg;
         float diffy = (cxy.y - down.y)/deg;
 
 
-        //box.setPosition((cxy.y - down.y)/deg,box.getPosition().y,(cxy.x - down.x)/deg);
+       // box.setPosition((cxy.y - down.y)/deg,box.getPosition().y,(cxy.x - down.x)/deg);
 
         bx.addToEnd(diffx);
         by.addToEnd(diffy);
 
 
-        objects.addAll(new Bubbles(10,box.getPosition(),6,Assets.i3,3f));
+       objects.addAll(new Bubbles(10,new Vector3(box.getPosition()).add(0,2,0),6,Assets.i3,3f, null));
 
         down = cxy;
         return false;

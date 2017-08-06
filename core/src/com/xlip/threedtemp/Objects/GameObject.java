@@ -2,10 +2,13 @@ package com.xlip.threedtemp.Objects;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g3d.Material;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
+import com.badlogic.gdx.graphics.g3d.attributes.BlendingAttribute;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
+import com.badlogic.gdx.graphics.g3d.attributes.FloatAttribute;
 import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute;
 import com.badlogic.gdx.graphics.g3d.model.data.ModelMaterial;
 import com.badlogic.gdx.math.Matrix4;
@@ -75,9 +78,10 @@ public class GameObject extends ModelInstance implements Disposable {
 
 
     public GameObject setTexture(TextureRegion texture){
+        materials.get(0).set(FloatAttribute.createAlphaTest(0.1f));
         TextureAttribute textureAttribute1 = new TextureAttribute(TextureAttribute.Diffuse, texture);
-
         materials.get(0).set(textureAttribute1);
+
         return this;
     }
 
