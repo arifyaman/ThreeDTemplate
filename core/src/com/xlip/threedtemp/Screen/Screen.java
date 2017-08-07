@@ -2,16 +2,15 @@ package com.xlip.threedtemp.Screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
-import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.xlip.threedtemp.Input.MyInputProcessor;
 import com.xlip.threedtemp.Menu.Menu;
 import com.xlip.threedtemp.Settings.Settings;
+import com.xlip.threedtemp.Shader.MyShaderProgram;
 import com.xlip.threedtemp.World.World;
 
 import static com.badlogic.gdx.Gdx.gl;
@@ -23,7 +22,7 @@ import static com.badlogic.gdx.Gdx.gl;
 public class Screen implements Menu.ScreenCallbacks,World.ScreenCallbacks {
     private World world;
     private Menu menu;
-    private ShaderProgram shaderProgram;
+    private MyShaderProgram myShaderProgram;
     private FrameBuffer frameBuffer;
     private SpriteBatch spriteBatch;
     private OrthographicCamera orthographicCamera;
@@ -35,6 +34,7 @@ public class Screen implements Menu.ScreenCallbacks,World.ScreenCallbacks {
         this.world = world;
         orthographicCamera=new OrthographicCamera(Settings.orto_width,Settings.orto_height);
         orthographicCamera.update();
+
         spriteBatch = new SpriteBatch();
         spriteBatch.enableBlending();
 
@@ -45,16 +45,15 @@ public class Screen implements Menu.ScreenCallbacks,World.ScreenCallbacks {
         //Gdx.input.setInputProcessor(new CameraInputController(world.camera));
     }
 
-    public Screen(World world, Menu menu,ShaderProgram shaderProgram) {
+    public Screen(World world, Menu menu,MyShaderProgram myShaderProgram) {
         this(world,menu);
-        this.shaderProgram = shaderProgram;
-        this.frameBuffer = new FrameBuffer(Pixmap.Format.RGB888,Gdx.graphics.getWidth(),Gdx.graphics.getHeight(),true);
-        spriteBatch.setShader(shaderProgram);
+        this.myShaderProgram = myShaderProgram;
+        this.frameBuffer = new FrameBuffer(Pixmap.Format.RGBA8888,Gdx.graphics.getWidth(),Gdx.graphics.getHeight(),true);
     }
 
 
-    public void render(float delta){
-        if(shaderProgram != null)
+    public void render(float delta) {
+        if(myShaderProgram != null)
             frameBuffer.begin();
 
         gl.glClearColor(1,1,1,1);
@@ -70,14 +69,17 @@ public class Screen implements Menu.ScreenCallbacks,World.ScreenCallbacks {
 
 
 
-        if(shaderProgram != null) {
+        if(myShaderProgram != null) {
             frameBuffer.end();
             TextureRegion t = new TextureRegion(frameBuffer.getColorBufferTexture());
             t.flip(false,true);
-            spriteBatch.begin();
-            spriteBatch.draw(t,0,0);
-            spriteBatch.end();
 
+            spriteBatch.setShader(myShaderProgram);
+            spriteBatch.setProjectionMatrix(orthographicCamera.combined);
+            spriteBatch.begin();
+            spriteBatch.draw(t,-Settings.orto_width/2,-Settings.orto_height/2,Settings.orto_width,Settings.orto_height);
+            spriteBatch.end();
+            myShaderProgram.update(delta);
         }
 
     }

@@ -4,9 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Timer;
 import com.xlip.threedtemp.Interfaces.AndroidUnit;
 import com.xlip.threedtemp.Menu.Effects.Defaults.DefaultMenuFinisher;
 import com.xlip.threedtemp.Menu.Effects.Defaults.DefaultMenuOpener;
@@ -16,7 +14,7 @@ import com.xlip.threedtemp.Menu.Object.MenuObject;
 import com.xlip.threedtemp.Objects.Model.Model;
 import com.xlip.threedtemp.Screen.SplashScreen;
 import com.xlip.threedtemp.Settings.Settings;
-import com.xlip.threedtemp.Utils.Lerp;
+import com.xlip.threedtemp.Shader.MyShaderProgram;
 import com.xlip.threedtemp.World.World;
 import com.xlip.threedtemp.Screen.Screen;
 
@@ -28,7 +26,7 @@ public class ThreeDTemp extends ApplicationAdapter implements SplashScreen.MainC
 
 
 	private Screen screen;
-	private ShaderProgram shaderProgram;
+	private MyShaderProgram myShaderProgram;
 
 	int number;
 	NumberRenderer numberRenderer;
@@ -104,10 +102,11 @@ public class ThreeDTemp extends ApplicationAdapter implements SplashScreen.MainC
 	public void onSplashScreenFinished() {
 		Model.init();
 
-		shaderProgram = new ShaderProgram(Assets.defaultShaderVertex,Assets.blurSahderFragment);
-		if (shaderProgram.isCompiled() == false) throw new IllegalArgumentException("Error compiling shader: " + shaderProgram.getLog());
+        myShaderProgram = new MyShaderProgram(Assets.defaultShaderVertex,Assets.testFragment);
 
-		screen = new Screen(new World(),setMenu());
+		World world = new World();
+		world.setMyShaderProgram(myShaderProgram);
+		screen = new Screen(world,setMenu());
 
 		androidUnit.show_bottom_banner();
 		number = 0;
@@ -152,7 +151,7 @@ public class ThreeDTemp extends ApplicationAdapter implements SplashScreen.MainC
 	@Override
 	public void render () {
 		final float delta = Math.min(1f / 30f, Gdx.graphics.getDeltaTime());
-
+		System.out.println(1/delta);
 		if(screen != null)
 			screen.render(delta);
 

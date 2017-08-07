@@ -12,6 +12,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class Assets {
     public static Texture atlas;
     public static String blurSahderFragment;
+    public static String testFragment;
+    public static String barrelBlurFragment;
     public static String defaultShaderVertex;
 
     //region items
@@ -42,6 +44,8 @@ public class Assets {
 
 
         blurSahderFragment = Gdx.files.internal("blur.frag.glsl").readString();
+        barrelBlurFragment = Gdx.files.internal("barrelBlur.glsl").readString();
+        testFragment = Gdx.files.internal("testFragment.glsl").readString();
         defaultShaderVertex = Gdx.files.internal("default.vertex.glsl").readString();
     }
 
