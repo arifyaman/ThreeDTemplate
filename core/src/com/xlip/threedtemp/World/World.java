@@ -52,13 +52,14 @@ public class World implements MyInputProcessor.MyInputCallback {
     private SpriteBatch spriteBatch;
 
     public World() {
+        environment = new Environment();
         camera=new PerspectiveCamera(67, Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         camera.near=1.5f;
         camera.far=100;
         camera.position.set(-15,10,0);
         camera.lookAt(0,0,0);
         camera.update();
-        environment = new Environment();
+
 
 
         objects=new Array<GameObject>();
@@ -95,13 +96,6 @@ public class World implements MyInputProcessor.MyInputCallback {
 
         modelBatch.end();
 
-        for (GameObject g :
-                objects) {
-            g.update(delta);
-        }
-
-
-
         if(myShaderProgram != null) {
             frameBuffer.end();
             TextureRegion t = new TextureRegion(frameBuffer.getColorBufferTexture());
@@ -113,7 +107,10 @@ public class World implements MyInputProcessor.MyInputCallback {
             spriteBatch.end();
 
         }
-
+        for (GameObject g :
+                objects) {
+            g.update(delta);
+        }
 
         // box.transform.setFromEulerAngles(bx.getValue(delta),by.getValue(delta),bx.getValue(delta));
 

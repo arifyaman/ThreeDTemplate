@@ -108,7 +108,7 @@ public class ThreeDTemp extends ApplicationAdapter implements SplashScreen.MainC
 		world.setMyShaderProgram(myShaderProgram);
 		screen = new Screen(world,setMenu());
 
-		androidUnit.show_bottom_banner();
+		//androidUnit.show_bottom_banner();
 		number = 0;
 
 
