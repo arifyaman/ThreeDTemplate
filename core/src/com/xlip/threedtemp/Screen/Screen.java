@@ -24,8 +24,8 @@ public class Screen implements Menu.ScreenCallbacks,World.ScreenCallbacks {
     private Menu menu;
     private MyShaderProgram myShaderProgram;
     private FrameBuffer frameBuffer;
-    private SpriteBatch spriteBatch;
-    private OrthographicCamera orthographicCamera;
+    public SpriteBatch spriteBatch;
+    public OrthographicCamera orthographicCamera;
 
 
 
@@ -108,5 +108,4 @@ public class Screen implements Menu.ScreenCallbacks,World.ScreenCallbacks {
     public OrthographicCamera getOrthographicCamera() {
         return orthographicCamera;
     }
-
 }

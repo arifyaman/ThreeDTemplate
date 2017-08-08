@@ -18,7 +18,6 @@ public class Environment extends com.badlogic.gdx.graphics.g3d.Environment {
         DirectionalLight dlight2 = new DirectionalLight().set(0.8f, 0.8f, 0.8f, -1f, 0.8f, 0.2f);
        // set(new ColorAttribute(ColorAttribute.AmbientLight, 0.4f, 0.4f, 0.4f, 1f));
         ColorAttribute fog = new ColorAttribute(ColorAttribute.Fog, Color.SKY);
-
         set(fog);
         // environment.set(new ColorAttribute(ColorAttribute.AmbientLight, 0.9f, 0.9f, 0.9f, 1f));
 

@@ -4,7 +4,7 @@ package com.xlip.threedtemp.Objects.Model;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.VertexAttributes;
-import com.badlogic.gdx.graphics.g3d.Material;
+import com.badlogic.gdx.graphics.g3d.*;
 import com.badlogic.gdx.graphics.g3d.attributes.BlendingAttribute;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
@@ -17,17 +17,18 @@ import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 //model ve body contructor ları burdan geliyor
 
 
-public class Model {
+public abstract class DefaultModels extends com.badlogic.gdx.graphics.g3d.Model {
+
     public static com.badlogic.gdx.graphics.g3d.Model model;
 
-    public static void init() {
+    public void init() {
 
         Material material=new Material();
         material.set(new ColorAttribute(ColorAttribute.createDiffuse(Color.RED)));
         material.set(new ColorAttribute(ColorAttribute.createSpecular(Color.RED)));
         material.set(new BlendingAttribute(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA, 1));
 
-        ModelBuilder mb=new ModelBuilder();
+        ModelBuilder mb = new ModelBuilder();
 
         mb.begin();
 
@@ -65,4 +66,8 @@ public class Model {
 
         model = mb.end();
     }
+
+    public abstract void addModelTheseParts();
+
+
 }

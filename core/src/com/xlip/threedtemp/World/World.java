@@ -112,12 +112,6 @@ public class World implements MyInputProcessor.MyInputCallback {
             g.update(delta);
         }
 
-        // box.transform.setFromEulerAngles(bx.getValue(delta),by.getValue(delta),bx.getValue(delta));
-
-
-        box.setPosition(by.getValue(delta),box.getPosition().y, bx.getValue(delta));
-
-
         for (GameObject g :
                 objects) {
             if(g.isDisposed())
@@ -134,38 +128,20 @@ public class World implements MyInputProcessor.MyInputCallback {
     
     @Override
     public boolean touchDown(Vector2 cxy) {
-        down = new Vector2(cxy);
-        //objects.addAll(new Bubbles(10,new Vector3(-5,1,0),6,Assets.i3,1.3f));
 
-       // myShaderProgram = null;
         return false;
     }
 
     MyShaderProgram temp;
     @Override
     public boolean touchUp(Vector2 cxy) {
-        myShaderProgram = temp;
-      //  if(myShaderProgram != null)
-       // myShaderProgram.setTimeManually(2);
+
         return false;
     }
 
     @Override
     public boolean touchDragged(Vector2 cxy) {
-        float deg = 50;
-        float diffx = (cxy.x - down.x)/deg;
-        float diffy = (cxy.y - down.y)/deg;
 
-
-       // box.setPosition((cxy.y - down.y)/deg,box.getPosition().y,(cxy.x - down.x)/deg);
-
-        bx.addToEnd(diffx);
-        by.addToEnd(diffy);
-
-
-       //objects.addAll(new Bubbles(10,new Vector3(box.getPosition()),6,Assets.i3,3f, null));
-
-        down = cxy;
         return false;
     }
 

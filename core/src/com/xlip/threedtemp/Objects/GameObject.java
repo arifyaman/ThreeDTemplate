@@ -1,21 +1,15 @@
 package com.xlip.threedtemp.Objects;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.g3d.Material;
+import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
-import com.badlogic.gdx.graphics.g3d.attributes.BlendingAttribute;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.attributes.FloatAttribute;
 import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute;
-import com.badlogic.gdx.graphics.g3d.model.data.ModelMaterial;
-import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Disposable;
-import com.xlip.threedtemp.Assets;
-import com.xlip.threedtemp.Objects.Model.Model;
+import com.xlip.threedtemp.Objects.Model.DefaultModels;
 
 import java.util.Random;
 
@@ -28,15 +22,21 @@ public class GameObject extends ModelInstance implements Disposable {
     private Vector3 position;
     private boolean disposed;
 
-
-    public GameObject(String node) {
-        super(Model.model, node);
+    public GameObject(Model model, String node) {
+        super(model, node);
         position = new Vector3();
         setPosition(0,0,0);
         random = new Random();
         onCreate();
-
     }
+
+    public GameObject(String node) {
+        this(DefaultModels.model, node);
+    }
+
+
+
+
 
     public void onCreate(){
 

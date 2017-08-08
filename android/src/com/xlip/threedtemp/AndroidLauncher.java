@@ -13,6 +13,7 @@ import com.badlogic.gdx.backends.android.surfaceview.ResolutionStrategy;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.xlip.stickyandspeedy.StickyAndSpeedy;
 import com.xlip.threedtemp.Interfaces.AndroidUnit;
 import com.xlip.threedtemp.ThreeDTemp;
 import com.xlip.threedtemp.ads.AdInitializer;
@@ -37,7 +38,7 @@ public class AndroidLauncher extends AndroidApplication implements AndroidUnit {
 		config.numSamples = 4;
 		config.useImmersiveMode = true;
 
-		View gameView = initializeForView(new ThreeDTemp(this), config);
+		View gameView = initializeForView(new StickyAndSpeedy(this), config);
 		setContentView(adInitializer.getView(gameView));
 
 
