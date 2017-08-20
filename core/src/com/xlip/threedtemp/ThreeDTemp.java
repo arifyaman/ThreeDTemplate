@@ -2,8 +2,10 @@ package com.xlip.threedtemp;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.xlip.threedtemp.Interfaces.AndroidUnit;
 import com.xlip.threedtemp.Objects.Model.DefaultModels;
+import com.xlip.threedtemp.Screen.Screen;
 import com.xlip.threedtemp.Screen.SplashScreen;
 
 import java.io.File;
@@ -11,7 +13,7 @@ import java.io.File;
 
 public abstract class ThreeDTemp extends ApplicationAdapter implements SplashScreen.MainCallBacks {
 	private AndroidUnit androidUnit;
-	private SplashScreen screen;
+	public Screen screen;
 
 	public ThreeDTemp(AndroidUnit androidUnit) {
 		this.androidUnit = androidUnit;
@@ -80,11 +82,13 @@ public abstract class ThreeDTemp extends ApplicationAdapter implements SplashScr
 			public void doInBackGround() {
 				DefaultModels defaultModels = new DefaultModels() {
 					@Override
-					public void addModelTheseParts() {
-						ThreeDTemp.this.addModelTheseParts();
-						this.init();
+					public void addModelTheseParts(ModelBuilder modelBuilder) {
+						ThreeDTemp.this.addModelTheseParts(modelBuilder);
 					}
 				};
+				defaultModels.init();
+
+				doInSplashScreenBackground();
 			}
 		};
 		//onSplashScreenFinished();
@@ -97,15 +101,13 @@ public abstract class ThreeDTemp extends ApplicationAdapter implements SplashScr
 	}
 
 
-
-	public abstract void addModelTheseParts();
+	public abstract void doInSplashScreenBackground();
+	public abstract void addModelTheseParts(ModelBuilder modelBuilder);
 
 
 	@Override
 	public void render () {
 		final float delta = Math.min(1f / 30f, Gdx.graphics.getDeltaTime());
-		System.out.println(1/delta);
-
 
 		if(screen != null)
 			screen.render(delta);
@@ -117,4 +119,5 @@ public abstract class ThreeDTemp extends ApplicationAdapter implements SplashScr
 	public void dispose () {
 
 	}
+
 }

@@ -1,37 +1,24 @@
 package com.xlip.threedtemp.World;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Cursor;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
-
-import com.badlogic.gdx.graphics.g3d.utils.AnimationController;
-import com.badlogic.gdx.graphics.g3d.utils.DefaultTextureBinder;
-import com.badlogic.gdx.graphics.g3d.utils.RenderContext;
-import com.badlogic.gdx.graphics.g3d.utils.TextureBinder;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
-import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 
-import com.xlip.threedtemp.Assets;
 import com.xlip.threedtemp.Input.MyInputProcessor;
 import com.xlip.threedtemp.Menu.Menu;
 import com.xlip.threedtemp.Objects.GameObject;
-import com.xlip.threedtemp.Objects.Partials.bubbles.Bubbles;
-import com.xlip.threedtemp.Settings.Settings;
+
 import com.xlip.threedtemp.Shader.MyShaderProgram;
-import com.xlip.threedtemp.Utils.Lerp;
 
 import static com.badlogic.gdx.Gdx.gl;
-import static com.badlogic.gdx.Gdx.gl20;
+
 
 /**
  * Created by Arif on 13.07.2017.
@@ -43,20 +30,20 @@ public class World implements MyInputProcessor.MyInputCallback {
     public Array<GameObject> objects;
 
     public Environment environment;
-    Lerp lerp,bx,by;
 
-    GameObject box;
-    Bubbles bubbles;
     private MyShaderProgram myShaderProgram;
     private FrameBuffer frameBuffer;
     private SpriteBatch spriteBatch;
+    private float cameraFar;
+
 
     public World() {
         environment = new Environment();
         camera=new PerspectiveCamera(67, Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         camera.near=1.5f;
-        camera.far=100;
-        camera.position.set(-15,10,0);
+        this.cameraFar = 100;
+        camera.far=cameraFar;
+        camera.position.set(0,10,-15);
         camera.lookAt(0,0,0);
         camera.update();
 
@@ -65,23 +52,6 @@ public class World implements MyInputProcessor.MyInputCallback {
         objects=new Array<GameObject>();
 
         modelBatch = new ModelBatch();
-
-
-
-        box = new GameObject("box").setColor(Color.valueOf("#63CE7A"));
-
-        objects.add(box);
-
-
-        bubbles = new Bubbles(10,new Vector3(0,3,0),6,Assets.i3,1.3f,null);
-
-
-        objects.addAll(bubbles);
-
-
-        bx = new Lerp(0,1,11);
-        by = new Lerp(0,1,11);
-            
     }
 
     public void render(float delta) {
@@ -90,6 +60,18 @@ public class World implements MyInputProcessor.MyInputCallback {
             gl.glClearColor(1,1,1,1);
             gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
         }
+        for (GameObject g :
+                objects) {
+            g.update(delta);
+        }
+
+        for (GameObject g :
+                objects) {
+            if(g.isDisposed())
+                objects.removeValue(g,false);
+        }
+        camera.update();
+
         modelBatch.begin(camera);
 
         modelBatch.render(objects,environment);
@@ -107,16 +89,8 @@ public class World implements MyInputProcessor.MyInputCallback {
             spriteBatch.end();
 
         }
-        for (GameObject g :
-                objects) {
-            g.update(delta);
-        }
 
-        for (GameObject g :
-                objects) {
-            if(g.isDisposed())
-             objects.removeValue(g,false);
-        }
+
 
     }
 
@@ -160,5 +134,13 @@ public class World implements MyInputProcessor.MyInputCallback {
         spriteBatch.enableBlending();
         this.myShaderProgram = myShaderProgram;
         this.temp = myShaderProgram;
+    }
+
+    public float getCameraFar() {
+        return cameraFar;
+    }
+
+    public void setCameraFar(float cameraFar) {
+        this.cameraFar = cameraFar;
     }
 }

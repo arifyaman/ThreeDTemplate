@@ -2,28 +2,46 @@ package com.xlip.threedtemp.World;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
-import com.badlogic.gdx.graphics.g3d.environment.AmbientCubemap;
 import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight;
+import com.badlogic.gdx.graphics.g3d.environment.PointLight;
+import com.badlogic.gdx.math.Vector3;
 
 /**
  * Created by Arif on 13.07.2017.
  */
 
 public class Environment extends com.badlogic.gdx.graphics.g3d.Environment {
+   public DirectionalLight dlight,dlight2,dlight3,dlight4;
+    public PointLight pointLight;
+
+
 
     public Environment() {
         super();
-        ColorAttribute ambient = new ColorAttribute(ColorAttribute.AmbientLight, 0.45f, 0.43f, 0.41f, 1f);
-        DirectionalLight dlight = new DirectionalLight().set(0.8f, 0.8f,0.8f, 1f, -0.8f, -0.2f);
-        DirectionalLight dlight2 = new DirectionalLight().set(0.8f, 0.8f, 0.8f, -1f, 0.8f, 0.2f);
+        ColorAttribute ambient = new ColorAttribute(ColorAttribute.AmbientLight, 1f, 1f, 1f, 1f);
+        dlight = new DirectionalLight().set(0.8f, 0.8f,0.8f, -0.3438974f,-0.67685384f,0.019636512f);
+        dlight2 = new DirectionalLight().set(0.8f, 0.8f, 0.8f, 0.6502156f,0.9053507f,0.24601352f);
+        dlight3 = new DirectionalLight().set(0.8f, 0.8f, 0.8f, 0.6502156f,0.9053507f,-0.24601352f);
+
+        dlight4 = new DirectionalLight().set(1, 1,1, -0.5917566f,0.347794f,0.3409844f);
+
+        pointLight = new PointLight().set(Color.CORAL,new Vector3(0,0,0),40);
+
        // set(new ColorAttribute(ColorAttribute.AmbientLight, 0.4f, 0.4f, 0.4f, 1f));
         ColorAttribute fog = new ColorAttribute(ColorAttribute.Fog, Color.SKY);
         set(fog);
         // environment.set(new ColorAttribute(ColorAttribute.AmbientLight, 0.9f, 0.9f, 0.9f, 1f));
 
-        add(dlight);
-        add(dlight2);
         set(ambient);
+
+        add(dlight);
+        //add(dlight2);
+        //add(dlight3);
+        add(pointLight);
+        //add(dlight4);
+
+
+
 
     }
 }

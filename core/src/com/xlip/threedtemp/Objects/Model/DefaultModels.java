@@ -20,15 +20,18 @@ import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 public abstract class DefaultModels extends com.badlogic.gdx.graphics.g3d.Model {
 
     public static com.badlogic.gdx.graphics.g3d.Model model;
+    ModelBuilder mb;
+
+
+    public DefaultModels() {
+        mb = new ModelBuilder();
+    }
 
     public void init() {
-
         Material material=new Material();
         material.set(new ColorAttribute(ColorAttribute.createDiffuse(Color.RED)));
         material.set(new ColorAttribute(ColorAttribute.createSpecular(Color.RED)));
         material.set(new BlendingAttribute(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA, 1));
-
-        ModelBuilder mb = new ModelBuilder();
 
         mb.begin();
 
@@ -55,6 +58,7 @@ public abstract class DefaultModels extends com.badlogic.gdx.graphics.g3d.Model 
                         0,1,-1,2,1);
 
 
+        addModelTheseParts(mb);
       /*  wh=10f;
         mb.node().id="duvar";
         mb.part("duvar", GL20.GL_TRIANGLES, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal| VertexAttributes.Usage.TextureCoordinates,material)
@@ -67,7 +71,7 @@ public abstract class DefaultModels extends com.badlogic.gdx.graphics.g3d.Model 
         model = mb.end();
     }
 
-    public abstract void addModelTheseParts();
+    public abstract void addModelTheseParts(ModelBuilder modelBuilder);
 
 
 }

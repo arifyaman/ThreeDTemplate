@@ -29,7 +29,8 @@ public class Lerp {
             onFinished();
 
         if(!this.finished) {
-            if (Math.abs(end - start) < Math.abs(orjStart-end)/100) {
+
+            if (Math.abs(end - start) < Math.abs(orjStart-end)/100 || end == start) {
                 start = end;
                 finished = true;
 

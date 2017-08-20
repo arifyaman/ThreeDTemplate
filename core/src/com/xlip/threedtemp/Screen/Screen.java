@@ -28,21 +28,21 @@ public class Screen implements Menu.ScreenCallbacks,World.ScreenCallbacks {
     public OrthographicCamera orthographicCamera;
 
 
-
-    public Screen(World world, Menu menu) {
-
-        this.world = world;
+    public Screen() {
         orthographicCamera=new OrthographicCamera(Settings.orto_width,Settings.orto_height);
         orthographicCamera.update();
 
         spriteBatch = new SpriteBatch();
         spriteBatch.enableBlending();
 
+    }
+
+    public Screen(World world, Menu menu) {
+        this();
+        this.world = world;
+
         if(menu != null)
             setMenu(menu);
-
-        Gdx.input.setInputProcessor(new MyInputProcessor(this).setMyInputCallback(world));
-        //Gdx.input.setInputProcessor(new CameraInputController(world.camera));
     }
 
     public Screen(World world, Menu menu,MyShaderProgram myShaderProgram) {
@@ -95,6 +95,12 @@ public class Screen implements Menu.ScreenCallbacks,World.ScreenCallbacks {
     @Override
     public void disposeCurrentMenu() {
         this.menu = null;
+    }
+
+    public void setWorld(World world) {
+        this.world = world;
+        Gdx.input.setInputProcessor(new MyInputProcessor(this).setMyInputCallback(world));
+
     }
 
     public World getWorld() {
