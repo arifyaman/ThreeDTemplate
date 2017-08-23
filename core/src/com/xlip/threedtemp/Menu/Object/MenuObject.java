@@ -3,7 +3,7 @@ package com.xlip.threedtemp.Menu.Object;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import com.xlip.threedtemp.Input.abs.Clickable;
+import com.xlip.threedtemp.Input.Abs.Clickable;
 
 /**
  * Created by Arif on 14.07.2017.

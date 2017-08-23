@@ -1,9 +1,8 @@
 package com.xlip.threedtemp.Menu.Effects.Defaults;
 
 import com.badlogic.gdx.math.Matrix4;
-import com.xlip.threedtemp.Menu.Effects.MenuEffect;
-import com.xlip.threedtemp.Menu.Menu;
 import com.xlip.threedtemp.Utils.Lerp;
+import com.xlip.threedtemp.Menu.Effects.MenuEffect;
 
 /**
  * Created by Arif on 23.07.2017.

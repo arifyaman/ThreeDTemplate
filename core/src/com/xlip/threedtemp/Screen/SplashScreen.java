@@ -4,9 +4,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Timer;
 import com.xlip.threedtemp.Assets;
+import com.xlip.threedtemp.Menu.Menu;
 import com.xlip.threedtemp.Menu.Effects.Defaults.DefaultMenuFinisher;
 import com.xlip.threedtemp.Menu.Effects.Defaults.DefaultMenuOpener;
-import com.xlip.threedtemp.Menu.Menu;
 import com.xlip.threedtemp.Menu.Object.MenuObject;
 import com.xlip.threedtemp.Settings.Settings;
 
@@ -20,7 +20,7 @@ public abstract class SplashScreen extends Screen {
     public SplashScreen(float delaySeconds, final MainCallBacks mainCallBacks) {
         super(null, null);
         final Menu splash = new Menu();
-        MenuObject splashImage = new MenuObject(new TextureRegion(Assets.splash),new Vector2(-Settings.orto_width/2,-Settings.orto_height/2),new Vector2(Settings.orto_width,Settings.orto_height));
+        MenuObject splashImage = new MenuObject(new TextureRegion(Assets.splash),new Vector2(-Settings.orto_width/2,-Settings.orto_height/2),new Vector2(Settings.orto_width, Settings.orto_height));
         splash.addMenuObject(splashImage);
         splash.setMenuOpener(new DefaultMenuOpener(8));
         doInBackGround();

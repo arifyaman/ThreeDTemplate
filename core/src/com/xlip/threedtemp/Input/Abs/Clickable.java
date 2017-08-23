@@ -1,4 +1,4 @@
-package com.xlip.threedtemp.Input.abs;
+package com.xlip.threedtemp.Input.Abs;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;

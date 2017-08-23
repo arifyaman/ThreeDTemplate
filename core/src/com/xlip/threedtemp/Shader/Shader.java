@@ -2,7 +2,6 @@ package com.xlip.threedtemp.Shader;
 
 import com.badlogic.gdx.graphics.g3d.Renderable;
 import com.badlogic.gdx.graphics.g3d.shaders.BaseShader;
-import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
 /**
  * Created by Arif on 16.07.2017.

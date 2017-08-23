@@ -101,7 +101,7 @@ public class GameObject<T extends GameObject> extends ModelInstance implements D
 
     public boolean interceptWith(BoundingBox other) {
         if(boundingBox != null) {
-            return boundingBox.contains(other);
+            return boundingBox.intersects(other);
         }
         return false;
     }

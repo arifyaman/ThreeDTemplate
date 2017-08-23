@@ -3,7 +3,6 @@ package com.xlip.threedtemp.Menu.Effects;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
 import com.xlip.threedtemp.Menu.Menu;
-import com.xlip.threedtemp.Utils.Lerp;
 
 /**
  * Created by Arif on 23.07.2017.

@@ -7,11 +7,11 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
-import com.xlip.threedtemp.Input.MyInputProcessor;
 import com.xlip.threedtemp.Menu.Menu;
+import com.xlip.threedtemp.Input.MyInputProcessor;
 import com.xlip.threedtemp.Settings.Settings;
-import com.xlip.threedtemp.Shader.MyShaderProgram;
 import com.xlip.threedtemp.World.World;
+import com.xlip.threedtemp.Shader.MyShaderProgram;
 
 import static com.badlogic.gdx.Gdx.gl;
 
@@ -45,7 +45,7 @@ public class Screen implements Menu.ScreenCallbacks,World.ScreenCallbacks {
             setMenu(menu);
     }
 
-    public Screen(World world, Menu menu,MyShaderProgram myShaderProgram) {
+    public Screen(World world, Menu menu, MyShaderProgram myShaderProgram) {
         this(world,menu);
         this.myShaderProgram = myShaderProgram;
         this.frameBuffer = new FrameBuffer(Pixmap.Format.RGBA8888,Gdx.graphics.getWidth(),Gdx.graphics.getHeight(),true);

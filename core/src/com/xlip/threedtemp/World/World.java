@@ -10,11 +10,9 @@ import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-
 import com.xlip.threedtemp.Input.MyInputProcessor;
 import com.xlip.threedtemp.Menu.Menu;
 import com.xlip.threedtemp.Objects.GameObject;
-
 import com.xlip.threedtemp.Shader.MyShaderProgram;
 
 import static com.badlogic.gdx.Gdx.gl;

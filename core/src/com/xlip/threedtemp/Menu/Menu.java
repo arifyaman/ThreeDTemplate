@@ -1,14 +1,11 @@
 package com.xlip.threedtemp.Menu;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.xlip.threedtemp.Menu.Effects.MenuEffect;
 import com.xlip.threedtemp.Menu.Object.MenuObject;
-import com.xlip.threedtemp.Utils.Lerp;
 import com.xlip.threedtemp.World.World;
 
 /**

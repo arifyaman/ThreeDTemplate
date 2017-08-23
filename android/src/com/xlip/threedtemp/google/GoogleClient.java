@@ -16,6 +16,8 @@ import com.google.android.gms.games.Games;
 
 public class GoogleClient implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private GoogleApiClient mGoogleApiClient;
+
+
     private Context context;
 
     private static final int RC_SIGN_IN = 9001;

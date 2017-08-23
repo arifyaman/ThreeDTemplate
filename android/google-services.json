@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "380208466802",
+    "firebase_url": "https://sticky-and-speedy.firebaseio.com",
+    "project_id": "sticky-and-speedy",
+    "storage_bucket": "sticky-and-speedy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380208466802:android:1505719742f88cc5",
+        "android_client_info": {
+          "package_name": "com.xlip.stickyandspeedy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "380208466802-t4q4vtmc7c4m4dkglm947b1ektqf0vj6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDa2LXP_mEqJ63RW9ODAfqs9u6Q-Ngpf28"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

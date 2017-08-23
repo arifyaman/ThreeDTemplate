@@ -2,21 +2,17 @@ package com.xlip.threedtemp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.badlogic.gdx.backends.android.surfaceview.ResolutionStrategy;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.xlip.stickyandspeedy.StickyAndSpeedy;
 import com.xlip.threedtemp.Interfaces.AndroidUnit;
-import com.xlip.threedtemp.ThreeDTemp;
 import com.xlip.threedtemp.ads.AdInitializer;
+import com.xlip.threedtemp.analytics.AnalyticsApplication;
 import com.xlip.threedtemp.google.GoogleClient;
 
 import java.io.File;
@@ -24,6 +20,7 @@ import java.io.File;
 public class AndroidLauncher extends AndroidApplication implements AndroidUnit {
 	private AdInitializer adInitializer;
 	private GoogleClient googleClient;
+	private Tracker mTracker;
 
 
 
@@ -41,8 +38,16 @@ public class AndroidLauncher extends AndroidApplication implements AndroidUnit {
 		View gameView = initializeForView(new StickyAndSpeedy(this), config);
 		setContentView(adInitializer.getView(gameView));
 
+		AnalyticsApplication application = (AnalyticsApplication) getApplication();
+		mTracker = application.getDefaultTracker();
+
+		Log.e("SetScreenAnalytics", "Setting screen name: ");
+		mTracker.setScreenName("Opening");
+		mTracker.send(new HitBuilders.ScreenViewBuilder().build());
 
 	}
+
+
 
 
 	@Override

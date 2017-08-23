@@ -6,13 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.xlip.threedtemp.Interfaces.AndroidUnit;
-import com.xlip.threedtemp.R;
-import com.xlip.threedtemp.ThreeDTemp;
 
 import java.io.File;
 
@@ -30,8 +27,8 @@ public class AdInitializer implements AndroidUnit {
 
     public AdInitializer(Context context) {
         this.context = context;
-        this.bottom_banner_id = context.getResources().getString(R.string.bottom_banner_id);
-        this.interstitial_id = context.getResources().getString(R.string.interstitial_id);
+        this.bottom_banner_id = context.getResources().getString(com.xlip.stickyandspeedy.R.string.bottom_banner_id);
+        this.interstitial_id = context.getResources().getString(com.xlip.stickyandspeedy.R.string.interstitial_id);
     }
 
 

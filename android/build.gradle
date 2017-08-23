@@ -18,7 +18,7 @@ android {
         exclude 'META-INF/robovm/ios/robovm.xml'
     }
     defaultConfig {
-        applicationId "com.xlip.threedtemp"
+        applicationId "com.xlip.stickyandspeedy"
         minSdkVersion 14
         targetSdkVersion 26
         multiDexEnabled true
@@ -33,8 +33,8 @@ android {
         }
 
         debug {
-            minifyEnabled true
-            shrinkResources true
+            minifyEnabled false
+            shrinkResources false
             proguardFiles 'proguard-project.txt',
                     'project.properties'
         }
@@ -91,7 +91,7 @@ task run(type: Exec) {
     }
 
     def adb = path + "/platform-tools/adb"
-    commandLine "$adb", 'shell', 'am', 'start', '-n', 'com.xlip.threedtemp/com.xlip.threedtemp.AndroidLauncher'
+    commandLine "$adb", 'shell', 'am', 'start', '-n', 'com.xlip.threedtemp/AndroidLauncher'
 }
 // sets up the Android Eclipse project, using the old Ant based build.
 eclipse {
@@ -147,6 +147,7 @@ idea {
 }
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.google.android.gms:play-services-analytics:+'
     compile 'com.google.android.gms:play-services-ads-lite:+'
     compile 'com.google.android.gms:play-services-games:+'
     compile 'com.android.support:multidex:+'
