@@ -48,7 +48,7 @@ public class Lerp {
         }
     }
 
-    public Lerp combineWith(float end){
+    public Lerp combineWith(float end) {
         combineWith(end, interpolation);
         return this;
     }
@@ -82,6 +82,11 @@ public class Lerp {
         return this.finished;
     }
 
+    public void reset(){
+        this.start = orjStart;
+        this.finished = false;
+    }
+
     public float getEnd() {
         return end;
     }
@@ -90,4 +95,7 @@ public class Lerp {
 
     }
 
+    public void setFinished(boolean finished) {
+        this.finished = finished;
+    }
 }

@@ -35,10 +35,6 @@ public abstract class DefaultModels extends com.badlogic.gdx.graphics.g3d.Model 
 
         mb.begin();
 
-        mb.node().id = "box";
-        mb.part("box", GL20.GL_TRIANGLES, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates, material)
-                .box(1,1,1);
-
         float wh=1f;
 
         mb.node().id="plane";

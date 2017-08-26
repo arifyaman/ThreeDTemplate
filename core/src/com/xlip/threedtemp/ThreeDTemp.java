@@ -100,7 +100,6 @@ public abstract class ThreeDTemp extends ApplicationAdapter implements SplashScr
 
 	}
 
-
 	public abstract void doInSplashScreenBackground();
 	public abstract void addModelTheseParts(ModelBuilder modelBuilder);
 
@@ -113,7 +112,6 @@ public abstract class ThreeDTemp extends ApplicationAdapter implements SplashScr
 			screen.render(delta);
 
 	}
-
 
 	@Override
 	public void dispose () {
