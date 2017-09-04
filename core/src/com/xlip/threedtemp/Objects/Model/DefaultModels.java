@@ -39,11 +39,11 @@ public abstract class DefaultModels extends com.badlogic.gdx.graphics.g3d.Model 
 
         mb.node().id="plane";
         mb.part("plane", GL20.GL_TRIANGLES, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal| VertexAttributes.Usage.TextureCoordinates,material)
-                .rect(0,wh,wh,
-                        0,wh,-wh,
-                        0,-wh,-wh,
-                        0,-wh,wh,
-                        0,1,-1);
+                .rect(-wh,wh,0,
+                        wh,wh,0,
+                        wh,-wh,0,
+                        -wh,-wh,0,
+                        -1,1,0);
 
         mb.node().id="patch";
         mb.part("patch", GL20.GL_TRIANGLES, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal| VertexAttributes.Usage.TextureCoordinates,material)

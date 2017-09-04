@@ -18,7 +18,7 @@ public class Assets {
     //region items
     public static TextureRegion  i1;
     public static TextureRegion  i2;
-    public static TextureRegion  i3;
+    public static TextureRegion defaultBubble;
     public static Texture splash;
 
 
@@ -35,7 +35,7 @@ public class Assets {
 
         i1 = new TextureRegion(atlas,0,0,200,200);
         i2 = new TextureRegion(atlas,200,0,200,200);
-        i3 = new TextureRegion(atlas,0,201,50,50);
+        defaultBubble = new TextureRegion(atlas,0,201,50,50);
 
 
 

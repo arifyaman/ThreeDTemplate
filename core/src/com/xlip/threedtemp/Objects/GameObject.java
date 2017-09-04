@@ -25,6 +25,17 @@ public class GameObject<T extends GameObject> extends ModelInstance implements D
     private Vector3 angle;
     public BoundingBox boundingBox;
 
+
+
+    public GameObject(Model model){
+        super(model);
+        position = new Vector3();
+        angle = new Vector3();
+        setPosition(0,0,0);
+        random = new Random();
+        onCreate();
+    }
+
     public GameObject(Model model, String node) {
         super(model, node);
         position = new Vector3();
@@ -110,6 +121,11 @@ public class GameObject<T extends GameObject> extends ModelInstance implements D
     @Override
     public void dispose() {
         disposed = true;
+        try {
+            finalize();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
     }
 
 

@@ -65,8 +65,11 @@ public class World implements MyInputProcessor.MyInputCallback {
 
         for (GameObject g :
                 objects) {
-            if(g.isDisposed())
+            if(g.isDisposed()){
                 objects.removeValue(g,false);
+
+            }
+
         }
         camera.update();
 

@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
+import com.xlip.threedtemp.Objects.GameObject;
 import com.xlip.threedtemp.Objects.Partials.Partial;
 
 import java.util.Random;
@@ -13,7 +14,7 @@ import java.util.Random;
  * Created by Arif on 22.07.2017.
  */
 
-public class Bubbles extends Array<Partial> {
+public class Bubbles extends Array<GameObject> {
 
 
 
@@ -27,7 +28,7 @@ public class Bubbles extends Array<Partial> {
                 @Override
                 public void onCreate() {
                     super.onCreate();
-                    dissappearRandomize = 3f + 7*random.nextFloat();
+                    dissappearRandomize = 3f + 1*random.nextFloat();
                 }
 
                 @Override

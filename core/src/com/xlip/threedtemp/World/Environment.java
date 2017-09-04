@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight;
 import com.badlogic.gdx.graphics.g3d.environment.PointLight;
-import com.badlogic.gdx.math.Vector3;
 
 /**
  * Created by Arif on 13.07.2017.
@@ -25,7 +24,6 @@ public class Environment extends com.badlogic.gdx.graphics.g3d.Environment {
 
         dlight4 = new DirectionalLight().set(1, 1,1, -0.5917566f,0.347794f,0.3409844f);
 
-        pointLight = new PointLight().set(Color.CORAL,new Vector3(0,0,0),40);
 
        // set(new ColorAttribute(ColorAttribute.AmbientLight, 0.4f, 0.4f, 0.4f, 1f));
         ColorAttribute fog = new ColorAttribute(ColorAttribute.Fog, Color.SKY);
@@ -37,11 +35,7 @@ public class Environment extends com.badlogic.gdx.graphics.g3d.Environment {
         add(dlight);
         //add(dlight2);
         //add(dlight3);
-        add(pointLight);
         //add(dlight4);
-
-
-
 
     }
 }
