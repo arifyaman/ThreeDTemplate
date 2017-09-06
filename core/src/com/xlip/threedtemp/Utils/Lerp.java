@@ -11,6 +11,8 @@ public class Lerp {
     private float interpolation;
     private  boolean finished;
     private Lerp combined;
+    private float finisherFraction;
+
 
 
 
@@ -20,6 +22,7 @@ public class Lerp {
         this.end = end;
         this.interpolation = interpolation;
         finished = false;
+        this.finisherFraction = 100;
     }
 
 
@@ -30,7 +33,7 @@ public class Lerp {
 
         if(!this.finished) {
 
-            if (Math.abs(end - start) < Math.abs(orjStart-end)/100 || end == start) {
+            if (Math.abs(end - start) < Math.abs(orjStart-end)/finisherFraction || end == start) {
                 start = end;
                 finished = true;
 
@@ -97,5 +100,13 @@ public class Lerp {
 
     public void setFinished(boolean finished) {
         this.finished = finished;
+    }
+
+    public float getFinisherFraction() {
+        return finisherFraction;
+    }
+
+    public void setFinisherFraction(float finisherFraction) {
+        this.finisherFraction = finisherFraction;
     }
 }
