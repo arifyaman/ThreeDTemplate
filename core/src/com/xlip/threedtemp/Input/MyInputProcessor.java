@@ -14,11 +14,11 @@ import com.xlip.threedtemp.Screen.Screen;
 public class MyInputProcessor implements InputProcessor {
     OrthographicCamera camera;
     Menu menu;
+
     private MyInputCallback myInputCallback;
 
     public MyInputProcessor(Screen screen) {
-        this.menu = screen.getMenu();
-        this.camera = screen.getOrthographicCamera();
+        this.camera = screen.orthographicCamera;
     }
 
     @Override
@@ -93,5 +93,13 @@ public class MyInputProcessor implements InputProcessor {
     public InputProcessor setMyInputCallback(MyInputCallback myInputCallback) {
         this.myInputCallback = myInputCallback;
         return this;
+    }
+
+    public void setCamera(OrthographicCamera camera) {
+        this.camera = camera;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
     }
 }

@@ -26,6 +26,7 @@ public class Screen implements Menu.ScreenCallbacks,World.ScreenCallbacks {
     private FrameBuffer frameBuffer;
     public SpriteBatch spriteBatch;
     public OrthographicCamera orthographicCamera;
+    private MyInputProcessor myInputProcessor;
 
 
     public Screen() {
@@ -34,6 +35,8 @@ public class Screen implements Menu.ScreenCallbacks,World.ScreenCallbacks {
 
         spriteBatch = new SpriteBatch();
         spriteBatch.enableBlending();
+        this.myInputProcessor = new MyInputProcessor(this);
+        Gdx.input.setInputProcessor(myInputProcessor);
 
     }
 
@@ -89,7 +92,8 @@ public class Screen implements Menu.ScreenCallbacks,World.ScreenCallbacks {
     public void setMenu(Menu menu) {
         this.menu = menu;
         this.menu.setScreenCallbacks(this);
-        menu.setView(orthographicCamera.combined);
+        this.menu.setView(orthographicCamera.combined);
+        this.myInputProcessor.setMenu(menu);
     }
 
     @Override
@@ -99,7 +103,7 @@ public class Screen implements Menu.ScreenCallbacks,World.ScreenCallbacks {
 
     public void setWorld(World world) {
         this.world = world;
-        Gdx.input.setInputProcessor(new MyInputProcessor(this).setMyInputCallback(world));
+        this.myInputProcessor.setMyInputCallback(world);
 
     }
 
